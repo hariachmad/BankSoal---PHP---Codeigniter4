@@ -15,6 +15,10 @@ class CreateTableUjian extends Migration
                 'unsigned' => true,
                 'auto_increment' => true
             ],
+            'nama_ujian' => [
+                'type' => 'VARCHAR',
+                'constraint' => 100
+            ],
             'deskripsi_ujian' => [
                 'type' => 'VARCHAR',
                 'constraint' => 100

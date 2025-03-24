@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class BabModel extends Model
 {
     protected $table = 'bab';
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
     protected $allowedFields = ['nomor_bab', 'nama_bab', 'sub_cpmk', 'id_mata_kuliah'];
 
     public function getBab($id = false)
