@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class KodeUjianModel extends Model
 {
     protected $table = 'kode_ujian';
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
     protected $allowedFields = ['kode_ujian', 'id_ujian'];
 
     public function getKodeUjian($id = false)

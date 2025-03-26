@@ -15,6 +15,11 @@ class CreateTableSoal extends Migration
                 'unsigned' => true,
                 'auto_increment' => true
             ],
+            'id_bab'=> [
+                'type' => 'INT',
+                'constraint' => 5,
+                'unsigned' => true,
+            ],
             'jawaban_benar' => [
                 'type' => 'VARCHAR',
                 'constraint' => 10
@@ -36,6 +41,7 @@ class CreateTableSoal extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('id_bab', 'bab','id','CASCADE','CASCADE');
         $this->forge->createTable('soal');
     }
 
