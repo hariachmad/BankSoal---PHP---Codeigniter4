@@ -14,11 +14,11 @@
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Philosopher:regular">
+	<link rel="stylesheet" href="<?= base_url("styles.css") ?>">
 	<title>Bank Soal</title>
 </head>
 
 <body>
-
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-6 offset-sm-3">
@@ -27,27 +27,39 @@
 					<h2 class="card-header">Login</h2>
 					<div class="card-body">
 
-						<form action="" method="post">
+
+						<form action="<?= route_to('login') ?>" method="post">
+							<?= csrf_field() ?>
 							<div class="form-group">
 								<label for="login">Username</label>
-								<input type="text" class="form-control" name="login" placeholder="Username">
+								<input type="text"
+									class="form-control <?php if (session('errors.login')): ?>is-invalid<?php endif ?>"
+									name="username" placeholder="Username">
+								<div class="invalid-feedback">
+									<?= session('errors.login') ?>
+								</div>
 							</div>
 
 
 							<div class="form-group">
 								<label for="password">Password</label>
-								<input type="password" name="password" class="form-control ">
+								<input type="hidden" name="login" value="true">
+								<input type="password" name="password"
+									class="form-control  <?php if (session('errors.password')): ?>is-invalid<?php endif ?>"
+									placeholder="Password">
+								<div class="invalid-feedback">
+									<?= session('errors.password') ?>
+								</div>
 							</div>
 							<br>
-							<button type="submit" class="btn btn-primary btn-block">submit</button>
+							<button type="submit" class="btn btn-primary btn-block">Submit</button>
 						</form>
 						<hr>
-						<p><a href="">Register</a></p>
+						<p><a href="<?= route_to('register') ?>">Need Account</a></p>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
-
 </html>
