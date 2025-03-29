@@ -19,6 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call('SoalSeeder');
         $this->call('UserSoalUjianSeeder');
         $this->call('AuthSeeder');
-
+        $this->call('MataKuliahSeeder');
     }
 }

@@ -38,10 +38,10 @@
             <ul class="navbar-nav ms-auto mt-2 mt-lg-0 ml-auto">
               <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#" style="line-height: 0.8em;">
-                  <small><span class="text-uppercase"><?= user()->fullname ?></span></small><br>
+                  <small><span class="text-uppercase"><?= session()->get("fullname") ?></span></small><br>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" id="absolute">
-                  <a href="<?= base_url("logout") ?>" class="dropdown-item">
+                  <a href="<?= route_to("logout") ?>" class="dropdown-item">
                     KELUAR
                   </a>
                 </div>

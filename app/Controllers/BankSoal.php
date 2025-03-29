@@ -25,7 +25,7 @@ class BankSoal extends BaseController
         $data = [
             'title' => 'Bank Soal',
             'mataKuliah' => $this->MataKuliahModel->getMataKuliah()
-        ];
+        ];        
 
         return view('bankSoal/dosen/index', $data);
     }

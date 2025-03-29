@@ -22,6 +22,11 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 offset-sm-3">
+                <?php if (session()->getFlashdata('errors')): ?>
+                    <div class="alert alert-danger">
+                        <?= esc(session()->getFlashdata('errors')) ?>
+                    </div>
+                <?php endif ?>
                 <div class="card">
                     <h2 class="card-header">Register</h2>
                     <div class="card-body">
@@ -47,8 +52,7 @@
                                 <label for="username">Username</label>
                                 <input type="text"
                                     class="form-control <?php if (session('errors.username')): ?>is-invalid<?php endif ?>"
-                                    name="username" placeholder="Username"
-                                    value="<?= old('username') ?>">
+                                    name="username" placeholder="Username" value="<?= old('username') ?>">
                             </div>
 
                             <div class="form-group">
@@ -68,15 +72,13 @@
 
                             <br>
 
-                            <button type="submit"
-                                class="btn btn-primary btn-block">Register</button>
+                            <button type="submit" class="btn btn-primary btn-block">Register</button>
                         </form>
 
 
                         <hr>
 
-                        <p>Already Registered <a
-                                href="<?= route_to('login') ?>">Sign-In</a></p>
+                        <p>Already Registered <a href="<?= route_to('login') ?>">Sign-In</a></p>
                     </div>
                 </div>
 

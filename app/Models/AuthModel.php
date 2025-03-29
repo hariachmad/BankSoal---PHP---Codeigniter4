@@ -39,6 +39,21 @@ class AuthModel extends Model
     protected $beforeDelete = [];
     protected $afterDelete = [];
 
+    public function registerUser(array $data)
+    {        
+        return $this->insert($data);
+    }
+
+    public function isEmailExists($email)
+    {
+        return $this->where('email', $email)->countAllResults() > 0;
+    }
+    
+    public function isUsernameExists($username)
+    {
+        return $this->where('username', $username)->countAllResults() > 0;
+    }
+
     protected function hashPassword(array $data)
     {
         if (!isset($data['data']['password'])) {

@@ -19,7 +19,7 @@ class AuthController extends BaseController
 
     public function register()
     {
-        $authLogin = new AuthModel();
+        $authModel = new AuthModel();
         $register = $this->request->getPost("register");
         if ($register) {
             $email = $this->request->getPost("email");
@@ -57,6 +57,33 @@ class AuthController extends BaseController
                 return redirect()->to("register");
             }
 
+            if ($authModel->isEmailExists($email)) {
+                session()->setFlashdata('errors.email', "Email Sudah Terdaftar Sebelumnya");
+                session()->setFlashdata('errors', "Email Sudah Terdaftar Sebelumnya");
+                return redirect()->to("register");
+            }
+
+            if ($authModel->isUsernameExists($username)) {
+                session()->setFlashdata('errors.username', "Username Sudah Terdaftar Sebelumnya");
+                session()->setFlashdata('errors', "Username Sudah Terdaftar Sebelumnya");
+                return redirect()->to("register");
+            }
+
+            $data = [
+                'email' => $email,
+                'username' => $username,
+                'fullname' => $fullname,
+                'password' => $password,
+            ];
+
+            if ($authModel->registerUser($data)) {
+                session()->setFlashdata('success', "Registrasi berhasil! Silakan login.");
+                return redirect()->to('login');
+            } else {
+                session()->setFlashdata('errors', "Gagal melakukan registrasi");
+                return redirect()->to('register');
+            }
+
 
         }
         return view("auth/register");
@@ -69,7 +96,7 @@ class AuthController extends BaseController
 
     public function login()
     {
-        $authLogin = new AuthModel();
+        $authModel = new AuthModel();
         $login = $this->request->getPost("login");
         if ($login) {
             $username = $this->request->getPost("username");
@@ -82,6 +109,16 @@ class AuthController extends BaseController
             if ($password == '') {
                 session()->setFlashdata('errors.password', "Silahkan masukan username");
                 return redirect()->to("login");
+            }
+
+            if ($authModel->verifyPassword($username, $password)) {
+                $data = $authModel->getFullnameByUsername($username);
+                session()->set(
+                    [
+                        "fullname" => $data["fullname"]
+                    ]
+                );
+                return redirect()->to('bankSoal');
             }
         }
         return view("auth/login");

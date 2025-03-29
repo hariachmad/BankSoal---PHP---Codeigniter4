@@ -22,6 +22,11 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-6 offset-sm-3">
+				<?php if (session()->getFlashdata('success')): ?>
+					<div class="alert alert-success">
+						<?= esc(session()->getFlashdata('success')) ?>
+					</div>
+				<?php endif ?>
 
 				<div class="card">
 					<h2 class="card-header">Login</h2>
@@ -62,4 +67,5 @@
 		</div>
 	</div>
 </body>
+
 </html>
