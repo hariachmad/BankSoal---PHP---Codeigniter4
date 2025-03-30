@@ -5,8 +5,10 @@
     <div class="row">
         <div class="col">
             <h2 class="mt-2"><?= $ujian['nama_ujian'] ?></h2><br>
-            <a class="btn btn-primary" href="/banksoal/<?= $id_mata_kuliah; ?>/">Kembali ke Halaman Sebelumnya</a><br><br>
-            <a id="exportExcel" class="btn btn-success" href="/banksoal/export/<?= $ujian['id']; ?>/" role="button">Export Nilai ke Excel</a>
+            <a class="btn btn-primary" href="/banksoal/<?= $id_mata_kuliah; ?>/">Kembali ke Halaman
+                Sebelumnya</a><br><br>
+            <a id="exportExcel" class="btn btn-success" href="/banksoal/export/<?= $ujian['id']; ?>/"
+                role="button">Export Nilai ke Excel</a>
             <table class="table">
                 <thead>
                     <tr>
@@ -47,7 +49,7 @@
                         <td>Acak Soal</td>
                         <td><?= ($ujian['random']) === 0 ? 'Tidak' : 'Ya'; ?></td>
                     </tr>
-                    <?php if ($ujian['ruang_ujian']) : ?>
+                    <?php if ($ujian['ruang_ujian']): ?>
                         <tr>
                             <td>Ruang Ujian</td>
                             <td><?= $ujian['ruang_ujian'] ?></td>
@@ -61,12 +63,14 @@
                         <td>Kode Ujian</td>
                         <td>
                             <p id="codeCell">
-                            <?php if ($kode_ujian) : ?>
-                                <?= $kode_ujian; ?>
-                            <?php endif; ?>
+                                <?php if ($kode_ujian): ?>
+                                    <?= $kode_ujian; ?>
+                                <?php endif; ?>
                             </p>
-                            <a id="generateButton" class="btn btn-primary pull-right" href="#" role="button">Generate Kode Baru</a>
+                            <a id="generateButton" class="btn btn-primary pull-right" href="#" role="button">Generate
+                                Kode Baru</a>
                         </td>
+
                     </tr>
                 </tbody>
             </table>
@@ -77,7 +81,7 @@
                         <?php $count = array_count_values(array_column($soal_model, 'id_bab')); ?>
                         <?php $countAll = 0; ?>
                         <th scope="col" style="width: 20%">
-                            <?php foreach ($bab_data as $k) : ?>
+                            <?php foreach ($bab_data as $k): ?>
                                 <?php $countAll = $countAll + $count[$k['id']]; ?>
                             <?php endforeach; ?>
                             <?= $countAll; ?>
@@ -86,7 +90,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($bab_data as $k) : ?>
+                    <?php foreach ($bab_data as $k): ?>
                         <tr>
                             <td><?= $k['nama_bab']; ?></td>
                             <td>
@@ -103,12 +107,12 @@
     var generateButton = document.getElementById('generateButton');
 
     if (generateButton) {
-        generateButton.addEventListener('click', function() {
+        generateButton.addEventListener('click', function () {
             var randomCode = generateRandomCode();
             document.getElementById('codeCell').textContent = randomCode;
             // Send an AJAX request to save the code
             var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     // Code successfully saved
                     console.log('Code saved:', randomCode);
@@ -120,10 +124,10 @@
         });
     }
 
-    document.getElementById('exportExcel').addEventListener('click', function() {
+    document.getElementById('exportExcel').addEventListener('click', function () {
         // Send an AJAX request to save the code
         var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
+        xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 console.log('Excel exported');
             }

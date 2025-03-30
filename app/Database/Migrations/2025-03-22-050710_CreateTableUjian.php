@@ -42,14 +42,13 @@ class CreateTableUjian extends Migration
             'jumlah_soal'=> [
                 'type'=> 'INT',
             ],
-            'nama_ujian'=>[
-                'type'=> 'VARCHAR',
-                'constraint' => 100,
+            'id_mata_kuliah'=>[
+                'type'=> 'INT',
             ],
             'random'=>[
                 'type'=> 'BOOLEAN',
             ],
-            'tunjukan_nilai'=>[
+            'tunjukkan_nilai'=>[
                 'type'=> 'BOOLEAN',
             ]
 
@@ -57,6 +56,7 @@ class CreateTableUjian extends Migration
         ]);
         $this->forge->addKey('id', true);
         $this->forge->createTable('ujian');
+        $this->forge->addForeignKey('id_mata_kuliah', 'mata_kuliah', 'id', 'CASCADE', 'CASCADE');
     }
 
     public function down()

@@ -36,7 +36,7 @@ class BankSoal extends BaseController
             'title' => 'Bank Soal',
             'mataKuliah' => $this->MataKuliahModel->getMataKuliah($id),
             'bab' => $this->BabModel->getBab(),
-            'ujian' => $this->UjianModel->getUjian()
+            'ujian' => $this->UjianModel->getUjian()    
         ];
 
         if (empty($data['mataKuliah'])) {

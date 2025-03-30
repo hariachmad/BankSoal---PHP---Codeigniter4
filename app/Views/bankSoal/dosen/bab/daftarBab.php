@@ -8,11 +8,12 @@
             <a href="/banksoal" class="btn btn-primary mb-3">Kembali ke Daftar Mata Kuliah</a><br><br>
             <h2 class="mt-2">Daftar Ujian</h2><br>
             <a href="/banksoal/<?= $mataKuliah['id']; ?>/tambah_ujian" class="btn btn-primary mb-3">Tambah Ujian</a><br>
-            <?php if (session()->getFlashdata('pesan_ujian')) : ?>
+            <?php if (session()->getFlashdata('pesan_ujian')): ?>
                 <div class="alert alert-success" role="alert">
                     <?= session()->getFlashdata('pesan_ujian'); ?>
                 </div>
             <?php endif; ?>
+
             <table class="table">
                 <thead>
                     <tr>
@@ -21,16 +22,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($ujian as $k) : ?>
-                        <?php if ($k['id_mata_kuliah'] === $mataKuliah['id']) : ?>
+                    <?php foreach ($ujian as $k): ?>
+                        <?php if ($k['id_mata_kuliah'] === $mataKuliah['id']): ?>
                             <tr>
                                 <td><?= $k['nama_ujian'] ?></td>
-                                <td><a href="/banksoal/<?= $mataKuliah['id']; ?>/detail_ujian/<?= $k['id']; ?>/" class="btn btn-primary">Detail</a>
-                                    <a href="/banksoal/<?= $mataKuliah['id']; ?>/ubah_ujian/<?= $k['id']; ?>" class="btn btn-warning">Ubah</a>
-                                    <form action="/banksoal/<?= $mataKuliah['id']; ?>/hapus_ujian/<?= $k['id']; ?>" method="post" class="d-inline">
+                                <td><a href="/banksoal/<?= $mataKuliah['id']; ?>/detail_ujian/<?= $k['id']; ?>"
+                                        class="btn btn-primary">Detail</a>
+                                    <a href="/banksoal/<?= $mataKuliah['id']; ?>/ubah_ujian/<?= $k['id']; ?>"
+                                        class="btn btn-warning">Ubah</a>
+                                    <form action="/banksoal/<?= $mataKuliah['id']; ?>/hapus_ujian/<?= $k['id']; ?>"
+                                        method="get" class="d-inline">
                                         <?= csrf_field(); ?>
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Hapus Ujian ini?');">Hapus</button>
+                                        <button type="submit" class="btn btn-danger"
+                                            onclick="return confirm('Hapus Ujian ini?');">Hapus</button>
                                     </form>
                                 </td>
                             </tr>
@@ -41,7 +46,7 @@
 
             <h2 class="mt-2">Daftar Bab</h2><br>
             <a href="/banksoal/<?= $mataKuliah['id']; ?>/tambah_bab" class="btn btn-primary mb-3">Tambah Bab</a><br>
-            <?php if (session()->getFlashdata('pesan_bab')) : ?>
+            <?php if (session()->getFlashdata('pesan_bab')): ?>
                 <div class="alert alert-success" role="alert">
                     <?= session()->getFlashdata('pesan_bab'); ?>
                 </div>
@@ -55,17 +60,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($bab as $k) : ?>
-                        <?php if ($k['id_mata_kuliah'] === $mataKuliah['id']) : ?>
+                    <?php foreach ($bab as $k): ?>
+                        <?php if ($k['id_mata_kuliah'] === $mataKuliah['id']): ?>
                             <tr>
                                 <th scope="row"><?= $k['nomor_bab'] ?></th>
                                 <td><?= $k['nama_bab'] ?></td>
-                                <td><a href="/banksoal/<?= $mataKuliah['id']; ?>/bab/<?= $k['id']; ?>/" class="btn btn-primary">Detail</a>
-                                    <a href="/banksoal/<?= $mataKuliah['id']; ?>/ubah_bab/<?= $k['id']; ?>" class="btn btn-warning">Ubah</a>
-                                    <form action="/banksoal/<?= $mataKuliah['id']; ?>/hapus_bab/<?= $k['id']; ?>" method="post" class="d-inline">
+                                <td><a href="/banksoal/<?= $mataKuliah['id']; ?>/bab/<?= $k['id']; ?>/"
+                                        class="btn btn-primary">Detail</a>
+                                    <a href="/banksoal/<?= $mataKuliah['id']; ?>/ubah_bab/<?= $k['id']; ?>"
+                                        class="btn btn-warning">Ubah</a>
+              
+                                        <form action="/banksoal/<?= $mataKuliah['id']; ?>/hapus_bab/<?= $k['id']; ?>" method="get"
+                                        class="d-inline">
                                         <?= csrf_field(); ?>
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Hapus Bab ini?');">Hapus</button>
+                                        <button type="submit" class="btn btn-danger"
+                                            onclick="return confirm('Hapus Bab ini?');">Hapus</button>
                                     </form>
                                 </td>
                             </tr>

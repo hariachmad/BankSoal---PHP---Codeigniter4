@@ -223,6 +223,8 @@ class Ujian extends BaseController
             'kode_ujian' => $this->KodeUjianModel->getKodeUjianByUjian($id),
         ];
 
+
+
         if (empty($data['ujian'])) {
             throw new \codeIgniter\Exceptions\PageNotFoundException('Id Soal Ujian ' . $id . ' tidak ditemukan.');
         }
