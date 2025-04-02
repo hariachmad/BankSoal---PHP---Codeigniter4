@@ -71,15 +71,23 @@ class Soal extends BaseController
                 return redirect()->to('/banksoal/' . $id_mata_kuliah . '/bab/' . $id . '/tambah_soal')->withInput();
             }
         }
-        $this->SoalModel->insert([
-            'soal' => $this->request->getVar('soal'),
-            'jawaban_a' => $this->request->getVar('jawaban_a'),
-            'jawaban_b' => $this->request->getVar('jawaban_b'),
-            'jawaban_c' => $this->request->getVar('jawaban_c'),
-            'jawaban_d' => $this->request->getVar('jawaban_d'),
-            'jawaban_benar' => $this->request->getVar('jawaban_benar'),
-            'id_bab' => $id
-        ]);
+
+        try {
+            $this->SoalModel->insert([
+                'soal' => "Manusia bernafas menggunakan?",
+                'jawaban_a' => $this->request->getVar('jawaban_a'),
+                'jawaban_b' => $this->request->getVar('jawaban_b'),
+                'jawaban_c' => $this->request->getVar('jawaban_c'),
+                'jawaban_d' => $this->request->getVar('jawaban_d'),
+                'jawaban_benar' => $this->request->getVar('jawaban_benar'),
+                'id_bab' => $id
+            ]);
+        } catch (\Exception $e) {
+            var_dump($e);
+            exit();
+        }
+
+
         session()->setFlashdata('pesan', 'Soal berhasil ditambahkan');
         return redirect()->to('/banksoal/' . $id_mata_kuliah . '/bab/' . $id);
     }
