@@ -29,7 +29,7 @@
                                 <td>
                                     <a href="/banksoal/<?= $id_mata_kuliah; ?>/bab/<?= $bab['id'] ?>/detail_soal/<?= $k['id'] ?>" class="btn btn-primary">Detail</a>
                                     <a href="/banksoal/<?= $id_mata_kuliah; ?>/bab/<?= $bab['id'] ?>/ubah_soal/<?= $k['id'] ?>" class="btn btn-warning">Ubah</a>
-                                    <form action="/banksoal/<?= $id_mata_kuliah; ?>/bab/<?= $bab['id'] ?>/hapus_soal/<?= $k['id'] ?>" method="post" class="d-inline">
+                                    <form action="/banksoal/<?= $id_mata_kuliah; ?>/bab/<?= $bab['id'] ?>/hapus_soal/<?= $k['id'] ?>" method="get" class="d-inline">
                                         <?= csrf_field(); ?>
                                         <input type="hidden" name="_method" value="DELETE">
                                         <button type="submit" class="btn btn-danger" onclick="return confirm('Hapus Soal ini?');">Hapus</button>

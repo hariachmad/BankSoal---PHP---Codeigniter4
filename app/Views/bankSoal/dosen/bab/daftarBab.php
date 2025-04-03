@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col">
             <h2 class="mt-2"><?= $mataKuliah['nama_mata_kuliah'] ?></h2>
-            <a href="/banksoal" class="btn btn-primary mb-3">Kembali ke Daftar Mata Kuliah</a><br><br>
+            <a href="/bankSoal" class="btn btn-primary mb-3">Kembali ke Daftar Mata Kuliah</a><br><br>
             <h2 class="mt-2">Daftar Ujian</h2><br>
             <a href="/banksoal/<?= $mataKuliah['id']; ?>/tambah_ujian" class="btn btn-primary mb-3">Tambah Ujian</a><br>
             <?php if (session()->getFlashdata('pesan_ujian')): ?>

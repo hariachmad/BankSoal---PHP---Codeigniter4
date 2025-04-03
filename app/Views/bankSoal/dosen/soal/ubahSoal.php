@@ -10,7 +10,7 @@
     </div>
     <br><br>
     <div class="row-12">
-        <form action="/banksoal/<?= $id_mata_kuliah; ?>/bab/<?= $id_bab; ?>/update_soal/<?= $soal['id']; ?>" method="post">
+        <form action="/banksoal/<?= $id_mata_kuliah; ?>/bab/<?= $id_bab; ?>/update_soal/<?= $soal['id']; ?>" method="get">
             <?= csrf_field(); ?>
             <div class="row mb-3">
                 <label for="soal" class="col-sm-2 col-form-label">Soal</label>
