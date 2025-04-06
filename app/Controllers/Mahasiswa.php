@@ -70,13 +70,13 @@ class Mahasiswa extends BaseController
             return redirect()->to('/ujian/masuk_ujian')->withInput();
         }
         if ($this->KodeUjianModel->getKodeUjian($kodeUjian)) {
-            if (!$this->KodeUsersModel->getKodeUsersId(user_id(), $kodeUjian)) {
+            if (!$this->KodeUsersModel->getKodeUsersId(session()->get('id'), $kodeUjian)) {
                 $this->KodeUsersModel->insert([
-                    'id_users' => user_id(),
+                    'id_users' => session()->get('id'),
                     'kode_ujian' => $kodeUjian,
                 ]);
             }
-            $kodeUsers = $this->KodeUsersModel->getKodeUsersId(user_id(), $kodeUjian);
+            $kodeUsers = $this->KodeUsersModel->getKodeUsersId(session()->get('id'), $kodeUjian);
             return redirect()->to('/ujian/detail_ujian/' . $kodeUsers);
         } else {
             $validation = \Config\Services::validation();
@@ -196,7 +196,6 @@ class Mahasiswa extends BaseController
             'remainingTime' => $remainingTime,
             'id' => $id
         ];
-
         return view('bankSoal/mahasiswa/mulaiUjian', $data);
     }
     public function hasilUjian($id)

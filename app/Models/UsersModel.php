@@ -18,4 +18,9 @@ class UsersModel extends Model
 
         return $this->where(['id' => $id])->first();
     }
+
+    public function getUserByUsername($username)
+    {
+        return $this->where('username', $username)->first();
+    }
 }

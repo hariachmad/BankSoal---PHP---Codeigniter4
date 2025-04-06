@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\AuthModel;
+use App\Models\UsersModel;
 
 class AuthController extends BaseController
 {
@@ -20,6 +21,7 @@ class AuthController extends BaseController
     public function register()
     {
         $authModel = new AuthModel();
+        $usersModel = new UsersModel();
         $register = $this->request->getPost("register");
         if ($register) {
             $email = $this->request->getPost("email");
@@ -97,8 +99,10 @@ class AuthController extends BaseController
     public function login()
     {
         $authModel = new AuthModel();
+        $usersModel = new UsersModel();
         $login = $this->request->getPost("login");
         if ($login) {
+
             $username = $this->request->getPost("username");
             $password = $this->request->getPost("password");
             if ($username == '') {
@@ -112,15 +116,30 @@ class AuthController extends BaseController
             }
 
             if ($authModel->verifyPassword($username, $password)) {
-                $data = $authModel->getFullnameByUsername($username);
+                $data = $usersModel->getUserByUsername($username);
                 session()->set(
                     [
-                        "fullname" => $data["fullname"]
+                        "fullname" => $data["fullname"],
+                        "role"=>$data["role"],
+                        "id"=>$data["id"]
                     ]
                 );
-                return redirect()->to('bankSoal');
+                // return redirect()->to('bankSoal');
+                return $this->redirectBasedOnRole($data["role"]);
             }
         }
         return view("auth/login");
+    }
+
+    public function redirectBasedOnRole($role)
+    {
+        switch ($role) {
+            case 'Mahasiswa':
+                return redirect()->to('/banksoal/mahasiswa');
+            case 'Dosen':
+                return redirect()->to('/bankSoal');
+            default:
+                return redirect()->to('/');
+        }
     }
 }

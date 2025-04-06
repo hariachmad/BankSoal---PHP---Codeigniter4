@@ -9,6 +9,7 @@ $routes->get('/', 'Home::index');
 $routes->get('login', 'AuthController::viewLogin');
 $routes->get('register', 'AuthController::viewRegister');
 $routes->get('bankSoal', 'BankSoal::index');
+$routes->get('banksoal/mahasiswa', 'Mahasiswa::masukUjian');
 $routes->post('login','AuthController::login');
 $routes->post('register','AuthController::register');
 $routes->get('banksoal/(:num)', 'BankSoal::daftarBab/$1');
@@ -26,3 +27,6 @@ $routes->get('banksoal/(:num)/bab/(:num)/detail_soal/(:num)','Soal::detailSoal/$
 $routes->get('banksoal/(:num)/bab/(:num)/ubah_soal/(:num)','Soal::ubahSoal/$1/$2/$3');
 $routes->get('banksoal/(:num)/bab/(:num)/hapus_soal/(:num)','Soal::hapusSoal/$1/$2/$3');
 $routes->get('banksoal/(:num)/bab/(:num)/update_soal/(:num)','Soal::updateSoal/$1/$2/$3');
+$routes->post('/ujian/mendaftar_ujian','Mahasiswa::mendaftarUjian');
+$routes->get('/ujian/detail_ujian/(:num)','Mahasiswa::detailUjian/$1' );
+$routes->get('/ujian/mulai_ujian/(:num)','Mahasiswa::mulaiUjian/$1');
